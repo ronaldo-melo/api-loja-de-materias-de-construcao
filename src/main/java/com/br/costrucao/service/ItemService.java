@@ -1,5 +1,8 @@
 package com.br.costrucao.service;
 
+import java.util.Optional;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +22,18 @@ public class ItemService {
 	
 	public void deleteById(Long id) {
 		Item item = repository.findById(id).orElseThrow(
-				() -> new EntityNotFoundException("There is no item registred with that name"));
+				() -> new EntityNotFoundException("There is no item registred with that id"));
 		repository.deleteById(item.getId());
+	}
+	
+	public Item update(Long id, Optional<Item> item) {
+		
+		Item salvo = repository.findById(id).orElseThrow(
+				() -> new EntityNotFoundException("There is no item registred with that id"));
+		
+		BeanUtils.copyProperties(item.get(), salvo, "id");
+		return repository.save(salvo);
+		
 	}
 	
 }
