@@ -59,7 +59,7 @@ public class ItemController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<?> update(@PathVariable Long id, @PathVariable Item item){
+	public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Item item){
 		try {
 			item = service.update(id, Optional.of(item));
 			return ResponseEntity.status(HttpStatus.OK).body(item);
