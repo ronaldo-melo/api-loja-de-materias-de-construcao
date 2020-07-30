@@ -18,7 +18,7 @@ public class Item {
 	@Column(nullable = false)
 	private String nome;
 	
-	@Column(nullable = false)
+	@Column(name = "valor_de_unidade", nullable = false)
 	private BigDecimal valorDeUnidade;
 	
 	@Column(nullable = false)
