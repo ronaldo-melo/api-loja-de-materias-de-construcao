@@ -17,7 +17,9 @@ public class ItemService {
 	@Autowired
 	private ItemRepository repository;
 	
-	Supplier<RuntimeException> supplier = () ->  new EntityNotFoundException("There is no item registred with that id");
+	RuntimeException runException = new EntityNotFoundException("There is no item registred with that id");
+	
+	Supplier<RuntimeException> supplier = () -> runException;
 	
 	public Item save(Item entity) {
 		return repository.save(entity);
